@@ -69,9 +69,10 @@ $edit_id = isset($_GET['edit_status']) ? (int) $_GET['edit_status'] : null;
                         <div>
                             <a href="edit.php?id=<?= $row['id'] ?>" class="button button-edit">Редактировать</a>
                             <a href="delete.php?id=<?= $row['id'] ?>" class="button button-delete"
-                                onclick="return confirm('Удалить продукт?')">Удалить</a>
+                                onclick="return confirm('Удалить продукт «<?= htmlspecialchars($row['title']) ?>»?')">
+                                Удалить
+                            </a>
                         </div>
-
                     </td>
                 </tr>
             <?php endwhile; ?>
