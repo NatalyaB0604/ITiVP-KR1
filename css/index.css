@@ -72,10 +72,6 @@ td div {
   border-bottom: none;
 }
 
-.table tbody tr:nth-child(even) {
-  background: #f9f9f9;
-}
-
 .button {
   padding: 6px 10px;
   border-radius: 6px;
