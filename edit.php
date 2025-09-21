@@ -40,8 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     header("Location: index.php");
     exit;
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -67,11 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
     <div>
       <label class="form-label">Количество</label>
-      <input type="number" name="quantity" class="form-control" value="<?= $task['quantity'] ?>" min="0">
+      <input type="number" id="quantity" name="quantity" class="form-control" value="<?= $task['quantity'] ?>" min="0">
     </div>
     <div>
       <label class="form-label">Статус</label>
-      <select name="status" class="form-control">
+      <select name="status" id="status" class="form-control">
         <option value="В наличии" <?= $task['status'] == 'В наличии' ? 'selected' : '' ?>>В наличии</option>
         <option value="Закончился" <?= $task['status'] == 'Закончился' ? 'selected' : '' ?>>Закончился</option>
       </select>
@@ -81,5 +79,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <a href="index.php" class="button button-back">Назад</a>
     </div>
   </form>
+
+  <script>
+    const statusSelect = document.getElementById('status');
+    const quantityInput = document.getElementById('quantity');
+
+    statusSelect.addEventListener('change', function() {
+      if (this.value === 'Закончился') {
+        quantityInput.value = 0;
+      } else if (this.value === 'В наличии') {
+        if (parseInt(quantityInput.value) <= 0 || quantityInput.value === "") {
+          quantityInput.value = 1;
+        }
+      }
+    });
+  </script>
 </body>
 </html>
